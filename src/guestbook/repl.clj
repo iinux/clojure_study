@@ -32,3 +32,7 @@
 (defn stop-server []
   (.stop @server)
   (reset! server nil))
+
+(ns-unmap 'user 'save-message)
+(use 'guestbook.models.db)
+;(create-guestbook-table)
