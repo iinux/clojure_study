@@ -64,6 +64,26 @@
   )
 ))
 
+(defn handler [request-map]
+  {:status 200
+  :headers {"Content-Type" "text/html"}
+  :body (str "<html><body> your IP is: "
+  (:remote-addr request-map)
+  (:query-string request-map)
+  "</body></html>")
+  }
+)
+; (defn handler2 [request-map]
+;   (response
+;     (str "<html><body> your ip is:"
+;     (:remote-addr request-map)
+;     "</body></html>")
+;   )
+; )
+
 (defroutes home-routes
   (GET "/" [] (home))
-  (POST "/" [name message] (save-message name message)))
+  (POST "/" [name message] (save-message name message))
+  (GET "/yourIP" [request-map] (handler request-map))
+  ; (GET "/yourIP2" [request-map] (handler2 request-map))
+  )
